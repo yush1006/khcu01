@@ -183,7 +183,7 @@ main .wrap { padding-block: 0 112px; display: grid; gap: 96px; }
 .yr {
   grid-column: span 2;
   text-align: center;
-  padding: 16px 8px 10px;
+  padding: 14px 8px 12px;
   font-weight: 700;
   font-size: 16px;
   color: var(--fg);
@@ -720,7 +720,7 @@ const esc = s => String(s).replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;",">":
     let html = '<div class="corner"></div>';
     YEARS.forEach(
       (y) =>
-        (html += `<div class="yr">${y.label}<small>${esc(y.theme)}</small></div>`),
+        (html += `<div class="yr">${y.label}</div>`),
     );
     SEMS.forEach((s) => (html += `<div class="sem">${s}학기</div>`));
     LEVELS.forEach((lv) => {
