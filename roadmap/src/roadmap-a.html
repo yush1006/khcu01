@@ -1,0 +1,756 @@
+<title>사회복지전공 로드맵 A안</title>
+<style>
+/* 사회복지전공 로드맵 A안 - 버건디 틴트 모노 (팔레트 5)
+   단일 라이트 테마. 배경은 순백, 면과 선은 버건디의 아주 옅은 틴트, 글자는 와인빛 무채색 두 단계,
+   버건디(#8E1B2F)는 선택 상태, 필수 배지, 강조 과목에만 쓴다.
+   레이아웃: 8학기 타임라인 + 자격증 필터. 간격은 8px 그리드, 모서리는 카드 16 / 컨트롤 10 / 칩 8. */
+[hidden] { display: none !important; }
+
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f9f4f5;
+  --surface-3: #f3eaec;
+  --line: #ecdfe2;
+  --line-strong: #dcc9ce;
+  --fg: #2b1a1e;
+  --fg-2: #7c6a6e;
+  --fg-3: #a3959a;
+  --accent: #8e1b2f;
+  --accent-hover: #7a1527;
+  --accent-ink: #ffffff;
+  --accent-soft: #f3dee2;
+  --accent-line: #d9a6b0;
+  --lv1: #f9f4f5;
+  --lv2: #f1e4e7;
+  --lv3: #e8d4d9;
+  --lv-ink: #2b1a1e;
+  --focus: #8e1b2f;
+  --card: 0 1px 2px rgba(43, 26, 30, 0.05), 0 10px 32px rgba(43, 26, 30, 0.09);
+  --pop: 0 2px 6px rgba(43, 26, 30, 0.08), 0 20px 48px rgba(43, 26, 30, 0.16);
+  --font: 'Pretendard', 'Roboto', 'notokr', 'Arial', AppleGothic, 'dotum', '돋움', sans-serif;
+  --r: 16px;
+  --r-sm: 10px;
+  --r-xs: 8px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; word-break: keep-all; letter-spacing: -0.02em; }
+p { margin: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+.wrap { max-width: calc(969px + 48px); margin: 0 auto; padding-inline: 24px; }
+
+/* ---------- 사이트 크롬 (khcu.ac.kr 레이아웃) ---------- */
+.container { width: 1240px; max-width: 100%; margin: 0 auto; padding-inline: 24px; }
+@media (min-width: 1300px) { .container { padding-inline: 0; } }
+.site { --khcu: #a6192e; --khcu-dark: #8f1426; --gold: #e3c56b; --ink: #262121; }
+.util { background: var(--khcu); color: #fff; height: 40px; font-size: 15px; font-weight: 500; }
+.util .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+.util-l, .util-r { display: flex; align-items: center; gap: 18px; height: 100%; }
+.util-l .sep { width: 1px; height: 12px; background: rgba(255, 255, 255, 0.35); }
+.util-r .gold { color: var(--gold); }
+.util-r .btn-go { background: #b39a5b; color: #fff; height: 40px; padding: 0 20px; display: inline-flex; align-items: center; font-weight: 600; margin-left: 6px; }
+.util-r .search { width: 40px; height: 40px; display: inline-grid; place-items: center; }
+.util-r .search i { width: 14px; height: 14px; border: 2px solid #fff; border-radius: 50%; position: relative; display: block; }
+.util-r .search i::after { content: ""; position: absolute; width: 2px; height: 7px; background: #fff; right: -4px; bottom: -6px; transform: rotate(-45deg); }
+.head { background: #fff; height: 80px; position: relative; z-index: 3; }
+.head .container { display: grid; grid-template-columns: 1fr 200px 1fr; align-items: center; height: 80px; }
+.gnb { display: flex; justify-content: space-around; font-size: 19px; font-weight: 700; color: var(--ink); }
+.gnb span { padding: 0 8px; cursor: default; transition: color 0.16s var(--ease); }
+.gnb span:hover { color: var(--khcu); }
+.logo { position: relative; height: 80px; }
+.logo img { position: absolute; left: 50%; top: -40px; transform: translateX(-50%); width: 257px; height: 184px; max-width: none; display: block; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.14)); }
+.visual { position: relative; height: 230px; background: #4d5a76 url("{{VISUAL}}") center / cover no-repeat; overflow: hidden; }
+.visual h1 { position: relative; text-align: center; color: #fff; font-size: 41px; font-weight: 500; letter-spacing: -0.02em; padding-top: 58px; line-height: 1.2; }
+.crumbwrap { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: flex-end; }
+.crumb { display: flex; height: 50px; background: rgba(255, 255, 255, 0.62); backdrop-filter: blur(6px); font-size: 15px; color: #333; font-weight: 500; margin: 0; }
+.crumb > span { display: inline-flex; align-items: center; gap: 36px; padding: 0 22px; border-left: 1px solid rgba(0, 0, 0, 0.12); min-width: 160px; }
+.crumb .home { min-width: 60px; padding: 0 20px; justify-content: center; border-left: 0; }
+.crumb .home i { width: 14px; height: 10px; border: 2px solid #555; border-top: 0; position: relative; display: block; margin-top: 6px; }
+.crumb .home i::before { content: ""; position: absolute; left: -5px; top: -9px; width: 14px; height: 14px; border: 2px solid #555; border-right: 0; border-bottom: 0; transform: rotate(45deg); }
+.crumb .chev { width: 7px; height: 7px; border-right: 2px solid #777; border-bottom: 2px solid #777; transform: rotate(45deg) translateY(-2px); display: inline-block; }
+
+.layout { display: flex; gap: 52px; align-items: flex-start; padding-top: 44px; }
+.lnb { width: 219px; flex: none; border-right: 1px solid #e3e3e3; text-align: right; padding-right: 20px; }
+.lnb ul { list-style: none; margin: 0; padding: 0; }
+.lnb > ul > li > span { display: block; font-size: 16px; font-weight: 600; color: #555; line-height: 32px; position: relative; word-break: keep-all; }
+.lnb > ul > li.on > span { color: #a61212; }
+.lnb li.on > span::after { content: ""; position: absolute; right: -24px; top: 50%; width: 5px; height: 5px; border-radius: 50%; background: #a61212; transform: translateY(-50%); }
+.lnb-sub { padding: 8px 0 10px; }
+.lnb-sub li span { display: block; font-size: 14px; font-weight: 500; color: #888; line-height: 21px; position: relative; }
+.lnb-sub li.on span { color: #a61212; }
+.lnb-sub li.on span::after { right: -20px; width: 4px; height: 4px; }
+.content { width: 969px; flex: none; min-width: 0; }
+main .wrap { max-width: none; padding-inline: 0; }
+
+.deptbox { background: #b8475f; color: #fff; border-radius: 8px; padding: 44px 40px 40px; min-height: 168px; position: relative; overflow: hidden; }
+.deptbox::after { content: ""; position: absolute; right: -60px; top: -80px; width: 320px; height: 320px; border-radius: 50%; background: rgba(255, 255, 255, 0.07); }
+.deptbox h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+.deptbox .contact { display: flex; align-items: center; gap: 12px; margin-top: 18px; font-size: 17px; font-weight: 500; }
+.deptbox .lbl { padding-right: 14px; border-right: 1px solid rgba(255, 255, 255, 0.4); margin-right: 4px; }
+.deptbox .ic { width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 255, 255, 0.25); display: inline-grid; place-items: center; font-size: 13px; font-weight: 700; }
+.deptbox b { font-weight: 500; margin-right: 10px; }
+
+.tabs { display: grid; grid-template-columns: repeat(6, 1fr); margin: 50px 0 48px; border-bottom: 1px solid #c9c9c9; }
+.tab {
+  height: 60px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d1d1d;
+  border: 1px solid transparent;
+  border-left-color: #e2e2e2;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  transition: color 0.16s var(--ease);
+}
+.tab:first-child { border-left-color: transparent; }
+.tab:hover { color: #990e17; }
+.tab[aria-selected="true"] { color: #990e17; font-weight: 700; background: #fff; border-color: #990e17; border-bottom-color: #fff; }
+.tab[aria-selected="true"] + .tab { border-left-color: transparent; }
+
+/* ---------- 섹션 ---------- */
+main .wrap { padding-block: 0 112px; display: grid; gap: 96px; }
+.sec-head { display: grid; gap: 8px; margin-bottom: 28px; }
+.sec-head h2 { font-size: 28px; font-weight: 700; line-height: 1.25; }
+.sec-head p { color: var(--fg-2); font-size: 15.5px; }
+.dummy { padding: 88px 24px; text-align: center; background: var(--surface-2); border-radius: var(--r); color: var(--fg-2); }
+.dummy h2 { font-size: 22px; margin-bottom: 8px; color: var(--fg); }
+
+/* ---------- 필터 ---------- */
+.controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.seg { display: flex; gap: 2px; padding: 3px; background: var(--surface-3); border-radius: 12px; }
+.seg button {
+  padding: 8px 14px;
+  border-radius: 9px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--fg-2);
+  transition: background 0.18s var(--ease), color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+.seg button:hover { color: var(--fg); }
+.seg button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(142, 27, 47, 0.25), 0 4px 12px rgba(142, 27, 47, 0.18);
+}
+.seg button:active { transform: scale(0.98); }
+.legend { display: flex; gap: 16px; font-size: 13.5px; color: var(--fg-2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 12px; height: 12px; border-radius: 4px; display: inline-block; border: 1px solid var(--line-strong); }
+.hint {
+  display: none;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  padding: 14px 18px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  margin-bottom: 16px;
+}
+.hint.on { display: block; }
+.hint b { color: var(--accent); font-weight: 700; }
+
+/* ---------- 타임라인 ---------- */
+.tl {
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--card);
+}
+.tl-scroll { overflow-x: auto; }
+.tl-grid { display: grid; grid-template-columns: 76px repeat(8, minmax(0, 1fr)); min-width: 900px; }
+.corner { grid-row: span 2; background: var(--surface); border-bottom: 2px solid var(--accent); }
+.yr {
+  grid-column: span 2;
+  text-align: center;
+  padding: 16px 8px 10px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--fg);
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+}
+.yr small { display: block; font-weight: 500; color: var(--fg-2); font-size: 13px; margin-top: 2px; letter-spacing: 0; }
+.sem {
+  padding: 9px 8px 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg-2);
+  background: var(--surface-2);
+  border-left: 1px solid var(--line);
+  border-bottom: 2px solid var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.rail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--lv-ink);
+  border-top: 1px solid var(--line);
+}
+.rail.l1 { background: var(--lv1); }
+.rail.l2 { background: var(--lv2); }
+.rail.l3 { background: var(--lv3); }
+.cell {
+  padding: 8px;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  min-height: 64px;
+}
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  text-align: left;
+  padding: 8px 9px;
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 500;
+  word-break: break-all;
+  transition: background 0.18s var(--ease), border-color 0.18s var(--ease), box-shadow 0.18s var(--ease), opacity 0.22s var(--ease), transform 0.18s var(--ease);
+}
+.chip:hover { background: var(--surface); border-color: var(--line-strong); box-shadow: 0 2px 8px rgba(43, 26, 30, 0.08); transform: translateY(-1px); }
+.chip:active { transform: translateY(0); box-shadow: none; }
+.chip .tag {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+.chip .tag:empty { display: none; }
+.tl.filtered .chip { opacity: 0.32; }
+.tl.filtered .chip.hit { opacity: 1; background: var(--accent-soft); border-color: var(--accent-line); }
+.tl.filtered .chip.req { border-color: var(--accent); }
+.tl.filtered .chip.hit:hover { background: var(--accent-soft); box-shadow: 0 2px 10px rgba(142, 27, 47, 0.16); }
+
+/* ---------- 자격증 ---------- */
+.certs { display: grid; grid-template-columns: 264px 1fr; gap: 24px; align-items: start; }
+.cert-list { display: grid; gap: 4px; }
+.cert-btn {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  transition: background 0.18s var(--ease), border-color 0.18s var(--ease);
+}
+.cert-btn:hover { background: var(--surface-2); }
+.cert-btn[aria-pressed="true"] { background: var(--surface-2); border-color: var(--line); }
+.cert-btn .nm { font-weight: 600; font-size: 15.5px; color: var(--fg); }
+.cert-btn[aria-pressed="true"] .nm { color: var(--accent); font-weight: 700; }
+.cert-btn .kd { font-size: 13px; color: var(--fg-3); }
+.kind {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--surface-3);
+  color: var(--fg-2);
+  margin-left: 10px;
+  vertical-align: 3px;
+  letter-spacing: 0.01em;
+}
+.cert-detail {
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--card);
+  padding: 32px;
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.cert-detail h3 { font-size: 22px; font-weight: 700; }
+.cert-detail .sum { font-size: 17px; font-weight: 600; color: var(--accent); margin-top: -8px; }
+.cert-detail .rule { color: var(--fg-2); font-size: 15px; }
+.quota { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.quota div { padding: 16px 18px; border-radius: var(--r-sm); background: var(--surface-2); display: grid; gap: 4px; }
+.quota b { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.quota small { font-size: 13px; color: var(--fg-2); }
+.semlist { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.semlist .col { border-top: 2px solid var(--line-strong); padding-top: 10px; display: grid; gap: 6px; align-content: start; }
+.semlist .col h4 { margin: 0 0 4px; font-size: 13px; color: var(--fg-2); font-weight: 600; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }
+.semlist .col span { font-size: 14px; padding: 6px 10px; background: var(--surface-2); border-radius: var(--r-xs); line-height: 1.35; word-break: keep-all; }
+.semlist .col span.req { background: var(--accent-soft); color: var(--accent); font-weight: 600; border: 1px solid var(--accent-line); }
+.groups { display: grid; }
+.group { display: grid; grid-template-columns: 240px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+.group:last-child { border-bottom: 1px solid var(--line); }
+.group b { font-weight: 600; font-size: 14.5px; color: var(--fg); }
+.group div { display: flex; flex-wrap: wrap; gap: 6px; }
+.group span { font-size: 14px; padding: 5px 11px; background: var(--surface-2); border-radius: 999px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.step { padding: 18px; background: var(--surface-2); border-radius: var(--r-sm); display: grid; gap: 6px; font-size: 14.5px; }
+.step b { color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+.notes { display: grid; gap: 6px; font-size: 14px; color: var(--fg-2); padding-left: 18px; margin: 0; }
+
+/* ---------- 전공역량 ---------- */
+.comp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.comp { border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--card); overflow: hidden; }
+.comp h3 {
+  padding: 18px 18px 12px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.comp h3 small { font-size: 12.5px; color: var(--fg-2); font-weight: 600; font-variant-numeric: tabular-nums; background: var(--surface-3); padding: 2px 8px; border-radius: 999px; }
+.comp ul { list-style: none; margin: 0; padding: 4px 10px 12px; display: grid; gap: 2px; }
+.comp li button {
+  width: 100%;
+  text-align: left;
+  font-size: 14.5px;
+  padding: 8px 10px;
+  border-radius: var(--r-xs);
+  transition: background 0.16s var(--ease), color 0.16s var(--ease);
+}
+.comp li button:hover { background: var(--surface-2); color: var(--accent); }
+
+/* ---------- 팝오버 ---------- */
+.pop {
+  position: fixed;
+  z-index: 50;
+  width: 320px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--pop);
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+}
+.pop h4 { margin: 0; font-size: 17px; font-weight: 700; padding-right: 24px; }
+.pop .meta { font-size: 13.5px; color: var(--fg-2); margin-top: -6px; }
+.pop .row { display: grid; gap: 6px; }
+.pop .row b { font-size: 12px; color: var(--fg-3); font-weight: 700; letter-spacing: 0.06em; }
+.pop .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.pop .badge { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); }
+.pop .badge.acc { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.pop .none { font-size: 13.5px; color: var(--fg-3); }
+.pop .x {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  font-size: 18px;
+  color: var(--fg-3);
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background 0.16s var(--ease), color 0.16s var(--ease);
+}
+.pop .x:hover { background: var(--surface-2); color: var(--fg); }
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 1100px) {
+  .layout { flex-direction: column; gap: 24px; }
+  .lnb { display: none; }
+  .content { width: 100%; }
+  .head .container { grid-template-columns: 1fr 160px 1fr; }
+  .logo img { width: 200px; height: 143px; top: -30px; }
+  .gnb { font-size: 16px; }
+  .tabs { grid-template-columns: repeat(3, 1fr); }
+  .tab { height: 48px; }
+  .crumb > span { min-width: 0; gap: 14px; padding: 0 14px; }
+}
+@media (max-width: 900px) {
+  .certs { grid-template-columns: 1fr; }
+  .semlist { grid-template-columns: repeat(2, 1fr); }
+  .comp-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: 1fr; }
+  .group { grid-template-columns: 1fr; }
+  .quota { grid-template-columns: 1fr; }
+  .gnb { display: none; }
+  .head .container { grid-template-columns: 1fr; justify-items: center; }
+  main .wrap { gap: 72px; padding-block: 40px 88px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding-inline: 16px; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .semlist { grid-template-columns: 1fr; }
+  .deptbox h2 { font-size: 26px; }
+  .deptbox { padding: 28px 22px; }
+  .deptbox .contact { flex-wrap: wrap; font-size: 15px; }
+  .visual h1 { font-size: 30px; }
+  .util { font-size: 13px; }
+  .util-l, .util-r { gap: 10px; }
+  .sec-head h2 { font-size: 24px; }
+  .cert-detail { padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip, .seg button, .tab, .cert-btn, .comp li button, .pop .x, .gnb span { transition: none; }
+  .chip:hover { transform: none; }
+}
+</style>
+
+<header class="site">
+  <div class="util">
+    <div class="container">
+      <div class="util-l"><span>입학지원센터</span><i class="sep"></i><span>대학원</span></div>
+      <div class="util-r"><span class="gold">Sitemap</span><span class="gold">English</span><span class="btn-go">등교하기</span><span class="search" aria-label="검색"><i></i></span></div>
+    </div>
+  </div>
+  <div class="head">
+    <div class="container">
+      <nav class="gnb gnb-l" aria-label="주메뉴 왼쪽"><span>경희소개</span><span>학과소개</span><span>입학안내</span></nav>
+      <div class="logo"><img src="{{LOGO}}" alt="경희사이버대학교" width="257" height="184"></div>
+      <nav class="gnb gnb-r" aria-label="주메뉴 오른쪽"><span>학사안내</span><span>학습지원</span><span>대학생활</span></nav>
+    </div>
+  </div>
+  <div class="visual">
+    <h1>학과소개</h1>
+    <div class="container crumbwrap">
+      <div class="crumb"><span class="home" aria-label="홈"><i></i></span><span>학과소개<i class="chev"></i></span><span>사회복지학부<i class="chev"></i></span><span>사회복지전공<i class="chev"></i></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="container layout">
+  <aside class="lnb" aria-label="학과 메뉴">
+    <ul>
+        <li><span>전체 학부(과) 보기</span></li>
+        <li><span>IT·디자인융합학부</span></li>
+        <li><span>재난안전학부</span></li>
+        <li><span>전자정보공학과</span></li>
+        <li><span>스마트건축공학과</span></li>
+        <li><span>AI기계제어공학과</span></li>
+        <li><span>보건의료관리학과</span></li>
+        <li><span>한방건강관리학과</span></li>
+        <li><span>후마니타스학과</span></li>
+        <li><span>미디어문예창작학과</span></li>
+        <li class="on"><span>사회복지학부</span><ul class="lnb-sub"><li class=""><span>사회복지학부</span></li><li class="on"><span>사회복지전공</span></li><li class=""><span>노인복지전공</span></li><li class=""><span>아동·가족전공</span></li><li class=""><span>아동·보육전공</span></li><li class=""><span>청소년·가족전공</span></li></ul></li>
+        <li><span>상담심리학과</span></li>
+        <li><span>일본학과</span></li>
+        <li><span>중국어문화학과</span></li>
+        <li><span>미국문화영어학과</span></li>
+        <li><span>한국어문화학부</span></li>
+        <li><span>스포츠학부</span></li>
+        <li><span>실용음악학과</span></li>
+        <li><span>문화예술경영학과</span></li>
+        <li><span>미디어영상홍보학과</span></li>
+        <li><span>마케팅·리더십경영학부</span></li>
+        <li><span>글로벌경영학과</span></li>
+        <li><span>세무회계학과</span></li>
+        <li><span>자산관리학부</span></li>
+        <li><span>호텔경영학과</span></li>
+        <li><span>관광레저항공경영학과</span></li>
+        <li><span>외식조리경영학부</span></li>
+        <li><span>글로벌자율학부</span></li>
+        <li><span>교양교육(교양학부)</span></li>
+    </ul>
+  </aside>
+  <main class="content">
+    <div class="deptbox">
+      <h2>사회복지전공</h2>
+      <p class="contact"><span class="lbl">전공문의</span><span class="ic">@</span><b>welfare@khcu.ac.kr</b><span class="ic">T</span><b>02-3299-8625</b></p>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+
+  <div class="wrap" id="panel-roadmap" role="tabpanel">
+    <section id="sec-roadmap">
+      <div class="sec-head">
+        <h2>교육과정 로드맵</h2>
+        <p>
+          1학년부터 4학년까지 8개 학기에 걸친 전공 과목입니다. 자격증을 선택하면
+          그 자격에 필요한 과목만 강조되고, 과목을 누르면 관련 자격증과
+          전공역량을 볼 수 있습니다.
+        </p>
+      </div>
+      <div class="controls">
+        <div
+          class="seg"
+          id="certSeg"
+          role="group"
+          aria-label="자격증으로 보기"
+        ></div>
+        <div class="legend">
+          <span><i style="background: var(--lv1)"></i>기초</span
+          ><span><i style="background: var(--lv2)"></i>심화</span
+          ><span><i style="background: var(--lv3)"></i>응용</span>
+        </div>
+      </div>
+      <div class="hint" id="hint"></div>
+      <div class="tl" id="tl">
+        <div class="tl-scroll"><div class="tl-grid" id="tlGrid"></div></div>
+      </div>
+    </section>
+
+    <section id="sec-cert">
+      <div class="sec-head">
+        <h2>자격증별 로드맵</h2>
+        <p>
+          졸업과 함께 준비할 수 있는 자격증과 수료증입니다. 왼쪽에서 자격을
+          고르면 필요한 과목과 조건을 학기순으로 보여줍니다.
+        </p>
+      </div>
+      <div class="certs">
+        <div class="cert-list" id="certList"></div>
+        <div class="cert-detail" id="certDetail"></div>
+      </div>
+    </section>
+
+    <section id="sec-comp">
+      <div class="sec-head">
+        <h2>전공역량 매핑</h2>
+        <p>
+          사회복지전공이 기르는 4가지 역량과, 각 역량을 키우는 과목입니다. 한
+          과목이 여러 역량에 걸칠 수 있습니다.
+        </p>
+      </div>
+      <div class="comp-grid" id="compGrid"></div>
+    </section>
+  </div>
+  <div class="wrap" id="panel-dummy" role="tabpanel" hidden>
+    <div class="dummy">
+      <h2 id="dummyTitle"></h2>
+      <p>
+        이 탭은 시안 범위 밖이라 비워 두었습니다. 기존 페이지의 내용을 그대로
+        사용합니다.
+      </p>
+    </div>
+  </div>
+  </main>
+</div>
+
+<div class="pop" id="pop" hidden role="dialog" aria-modal="false"></div>
+
+<script>
+  <!--DATA-->
+</script>
+<script>
+  (function () {
+    const $ = (s) => document.querySelector(s);
+    /* tabs */
+    const tabs = $("#tabs");
+    TABS.forEach((t, i) => {
+      const b = document.createElement("button");
+      b.className = "tab";
+      b.role = "tab";
+      b.textContent = t;
+      b.setAttribute("aria-selected", i === 1);
+      b.onclick = () => {
+        tabs
+          .querySelectorAll(".tab")
+          .forEach((x) => x.setAttribute("aria-selected", x === b));
+        const real = i === 1;
+        $("#panel-roadmap").hidden = !real;
+        $("#panel-dummy").hidden = real;
+        $("#dummyTitle").textContent = t;
+      };
+      tabs.appendChild(b);
+    });
+
+    /* timeline */
+    const lvClass = (lv) => "l" + (LEVELS.indexOf(lv) + 1);
+    const grid = $("#tlGrid");
+    let html = '<div class="corner"></div>';
+    YEARS.forEach(
+      (y) =>
+        (html += `<div class="yr">${y.label}<small>${esc(y.theme)}</small></div>`),
+    );
+    SEMS.forEach((s) => (html += `<div class="sem">${s}학기</div>`));
+    LEVELS.forEach((lv) => {
+      html += `<div class="rail ${lvClass(lv)}">${lv}</div>`;
+      SEMS.forEach((s) => {
+        const list = ROADMAP[lv][s] || [];
+        html += `<div class="cell">${list
+          .map((n) => {
+            const sems = (COURSES[n] || { sems: [] }).sems;
+            const t =
+              sems.length > 1
+                ? ` title="${sems.join("학기, ")}학기 개설. 둘 중 한 번만 이수하면 됩니다."`
+                : "";
+            return `<button class="chip ${lvClass(lv)}" data-course="${esc(n)}"${t}><span class="tag"></span><span class="nm">${esc(n)}</span></button>`;
+          })
+          .join("")}</div>`;
+      });
+    });
+    grid.innerHTML = html;
+
+    /* cert filter */
+    const seg = $("#certSeg");
+    const tl = $("#tl");
+    const hint = $("#hint");
+    const opts = [{ id: "all", name: "전체" }, ...CERTS.filter((c) => c.bySem)];
+    opts.forEach((o) => {
+      const b = document.createElement("button");
+      b.textContent = o.name;
+      b.setAttribute("aria-pressed", o.id === "all");
+      b.onclick = () => applyFilter(o.id);
+      seg.appendChild(b);
+    });
+    function applyFilter(id) {
+      seg
+        .querySelectorAll("button")
+        .forEach((b, i) => b.setAttribute("aria-pressed", opts[i].id === id));
+      const c = id === "all" ? null : certById(id);
+      tl.classList.toggle("filtered", !!c);
+      grid.querySelectorAll(".chip").forEach((ch) => {
+        const n = ch.dataset.course;
+        const hit = c && c.courses.includes(n);
+        ch.classList.toggle("hit", !!hit);
+        const req = c && c.required && c.required.includes(n);
+        ch.classList.toggle("req", !!req);
+        ch.querySelector(".tag").textContent = req ? "필수" : "";
+      });
+      hint.classList.toggle("on", !!c);
+      if (c) {
+        const distinct = c.courses.length,
+          chips = grid.querySelectorAll(".chip.hit").length;
+        const dup = c.courses.filter(
+          (n) => (COURSES[n] || { sems: [] }).sems.length > 1,
+        ).length;
+        const dupNote = dup
+          ? ` 두 학기에 개설되는 과목은 양쪽 칸에 모두 표시되지만 한 번만 이수하면 됩니다. (과목 ${distinct}개, 칸 ${chips}개)`
+          : "";
+        let body;
+        if (c.id === "sw2")
+          body = `<b>필수</b> 배지가 붙은 ${c.required.length}과목은 반드시 이수하고, 나머지 관련 과목 ${distinct - c.required.length}개 중 7과목을 선택합니다.`;
+        else if (c.required)
+          body = `<b>필수</b> 배지가 붙은 ${c.required.length}과목은 반드시 이수합니다. ${esc(c.electiveNote || "")}`;
+        else
+          body = `강조된 ${distinct}과목이 이 자격과 관련된 과목입니다. 원본 안내에는 필수와 선택 구분이 없어 모두 같은 색으로 표시했습니다.`;
+        hint.innerHTML = `<b>${esc(c.name)}</b> ${esc(c.summary)}. ${body}${dupNote}`;
+      }
+    }
+
+    /* cert section */
+    const cl = $("#certList"),
+      cd = $("#certDetail");
+    CERTS.forEach((c, i) => {
+      const b = document.createElement("button");
+      b.className = "cert-btn";
+      b.innerHTML = `<span class="nm">${esc(c.name)}</span><span class="kd">${esc(c.kind)}</span>`;
+      b.setAttribute("aria-pressed", i === 0);
+      b.onclick = () => showCert(c.id);
+      cl.appendChild(b);
+    });
+    function showCert(id) {
+      const c = certById(id);
+      cl.querySelectorAll(".cert-btn").forEach((b, i) =>
+        b.setAttribute("aria-pressed", CERTS[i].id === id),
+      );
+      let h = `<div><h3>${esc(c.name)}<span class="kind">${esc(c.kind)}</span></h3></div><p class="sum">${esc(c.summary)}</p><p class="rule">${esc(c.rule)}</p>`;
+      if (c.quota)
+        h += `<div class="quota"><div><b>${c.quota.required}과목</b><small>필수 (보건복지부령 지정)</small></div><div><b>${c.quota.elective}과목</b><small>선택 (관련 과목 중 택 7)</small></div><div><b>${c.courses.length}과목</b><small>로드맵에 개설된 관련 과목</small></div></div>`;
+      if (c.steps)
+        h += `<div class="steps">${c.steps.map((s, i) => `<div class="step"><b>${i + 1}단계</b><span>${esc(s)}</span></div>`).join("")}</div>`;
+      if (c.groups)
+        h += `<div class="groups">${c.groups.map((g) => `<div class="group"><b>${esc(g.label)}</b><div>${g.items.map((x) => `<span>${esc(x)}</span>`).join("")}</div></div>`).join("")}</div>`;
+      if (c.bySem) {
+        h += `<div class="semlist">${SEMS.map((s) => {
+          const list = c.bySem[s] || [];
+          if (!list.length) return "";
+          return `<div class="col"><h4>${s}학기</h4>${list.map((n) => `<span class="${c.required && c.required.includes(n) ? "req" : ""}">${esc(n)}</span>`).join("")}</div>`;
+        }).join("")}</div>`;
+      }
+      if (c.notes.length)
+        h += `<ul class="notes">${c.notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>`;
+      cd.innerHTML = h;
+    }
+    showCert("sw2");
+
+    /* competency */
+    const cg = $("#compGrid");
+    COMPS.forEach((cp, i) => {
+      const list = Object.keys(MAPPING).filter((n) => MAPPING[n][i]);
+      cg.innerHTML += `<div class="comp"><h3>${esc(cp)}<small>${list.length}과목</small></h3><ul>${list.map((n) => `<li><button data-course="${esc(n)}">${esc(n)}</button></li>`).join("")}</ul></div>`;
+    });
+
+    /* popover */
+    const pop = $("#pop");
+    function openPop(btn) {
+      const n = btn.dataset.course,
+        c = COURSES[n] || {
+          name: n,
+          level: null,
+          sems: [],
+          certs: [],
+          comps: MAPPING[n] || [0, 0, 0, 0],
+        };
+      const certs = c.certs
+        .map((id) => {
+          const ct = certById(id);
+          const req = !!(ct.required && ct.required.includes(n));
+          return `<span class="badge ${req ? "acc" : ""}">${esc(ct.name)}${req ? " 필수" : ""}</span>`;
+        })
+        .join("");
+      const comps = COMPS.filter((_, i) => c.comps[i])
+        .map((x) => `<span class="badge">${esc(x)}</span>`)
+        .join("");
+      pop.innerHTML = `<button class="x" aria-label="닫기">×</button><h4>${esc(n)}</h4><p class="meta">${c.level ? c.level + " 과목 · " : ""}${c.sems.length > 1 ? c.sems.join(", ") + "학기 개설 (한 번만 이수)" : c.sems.length ? c.sems[0] + "학기 개설" : "개설 학기 정보 없음"}</p><div class="row"><b>관련 자격증</b><div class="badges">${certs || '<span class="none">해당 없음</span>'}</div></div><div class="row"><b>전공역량</b><div class="badges">${comps || '<span class="none">매핑 정보 없음</span>'}</div></div>`;
+      pop.hidden = false;
+      const r = btn.getBoundingClientRect();
+      let x = r.left,
+        y = r.bottom + 8;
+      const w = 300,
+        h = pop.offsetHeight;
+      if (x + w > innerWidth - 12) x = innerWidth - 12 - w;
+      if (y + h > innerHeight - 12) y = r.top - h - 8;
+      if (y < 8) y = 8;
+      pop.style.left = Math.max(8, x) + "px";
+      pop.style.top = y + "px";
+      pop.querySelector(".x").onclick = () => (pop.hidden = true);
+    }
+    document.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-course]");
+      if (b) {
+        openPop(b);
+        return;
+      }
+      if (!pop.contains(e.target)) pop.hidden = true;
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") pop.hidden = true;
+    });
+    addEventListener(
+      "scroll",
+      () => {
+        pop.hidden = true;
+      },
+      { passive: true },
+    );
+  })();
+</script>

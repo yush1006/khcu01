@@ -1,0 +1,4 @@
+.claude/
+*.pre-*.html
+Thumbs.db
+.DS_Store

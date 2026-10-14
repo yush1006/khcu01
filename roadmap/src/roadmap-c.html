@@ -1,0 +1,234 @@
+<title>사회복지전공 로드맵 C안</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+[hidden]{display:none!important}
+/* Layout concept: 학년을 4개의 장(chapter)으로 세로로 읽어 내려가는 가이드북. 큰 숫자와 한 줄 목표가 각 장을 열고, 자격증은 비교표로, 역량은 "이 역량을 키우는 과목"으로 뒤집어 보여준다. */
+:root{
+  --bg:#FAFAF9; --surface:#FFFFFF; --surface-2:#F0EFEC; --line:#E1DFDA; --line-strong:#B9B5AD; --ink-line:#1A1C22;
+  --fg:#1A1C22; --fg-2:#5A5C63; --fg-3:#8E9098;
+  --accent:#A6192E; --accent-ink:#FFFFFF; --accent-soft:#F8E6E9;
+  --focus:#2E5BFF;
+  --display:"Hahmlet","Noto Serif KR",serif;
+  --font:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141518; --surface:#1C1D22; --surface-2:#26272D; --line:#34353C; --line-strong:#55565F; --ink-line:#ECEAE4;
+  --fg:#ECEAE4; --fg-2:#B9B7B0; --fg-3:#80827F;
+  --accent:#E25C70; --accent-ink:#1A0B0E; --accent-soft:#3A1F25; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#141518; --surface:#1C1D22; --surface-2:#26272D; --line:#34353C; --line-strong:#55565F; --ink-line:#ECEAE4;
+  --fg:#ECEAE4; --fg-2:#B9B7B0; --fg-3:#80827F;
+  --accent:#E25C70; --accent-ink:#1A0B0E; --accent-soft:#3A1F25; color-scheme:dark; }
+
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;text-wrap:balance;word-break:keep-all} p{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:24px}
+
+/* header */
+.topbar{border-bottom:1px solid var(--ink-line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:24px}
+.brand{font-family:var(--display);font-weight:700;font-size:17px}
+.gnb{display:flex;gap:28px;font-size:14px;font-weight:500}
+.titleband .wrap{display:grid;gap:4px;padding-block:40px 0}
+.crumb{font-size:13px;color:var(--fg-3)}
+.titleband h1{font-family:var(--display);font-size:40px;font-weight:700;letter-spacing:-.01em}
+.contact{font-size:13.5px;color:var(--fg-2);margin-top:6px}
+.contact b{color:var(--fg);font-weight:500}
+.tabs{display:flex;gap:0;margin-top:28px;border-bottom:1px solid var(--ink-line);overflow-x:auto;overflow-y:hidden}
+.tab{padding:12px 20px 12px 0;margin-right:20px;font-weight:500;color:var(--fg-2);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--fg);border-color:var(--accent);font-weight:700}
+
+main .wrap{padding-block:48px 96px;display:grid;gap:88px}
+.dummy{padding:72px 24px;text-align:center;border:1px solid var(--line);color:var(--fg-2)}
+.dummy h2{font-family:var(--display);font-size:22px;margin-bottom:6px;color:var(--fg)}
+
+/* intro */
+.intro{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+.intro h2{font-family:var(--display);font-size:34px;line-height:1.25;font-weight:700}
+.intro p{color:var(--fg-2);max-width:48ch;margin-top:14px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink-line)}
+.facts div{padding:16px 0 4px;border-right:1px solid var(--line);padding-right:14px}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-family:var(--display);font-size:34px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.facts small{font-size:12.5px;color:var(--fg-2)}
+
+/* chapters */
+.chapters{display:grid;gap:56px}
+.ch{display:grid;grid-template-columns:200px 1fr;gap:32px;border-top:1px solid var(--ink-line);padding-top:24px}
+.ch .num{font-family:var(--display);font-size:72px;line-height:.9;font-weight:700;color:var(--accent)}
+.ch .num small{display:block;font-family:var(--font);font-size:14px;font-weight:700;color:var(--fg);margin-top:10px}
+.ch .theme{font-family:var(--display);font-size:22px;font-weight:700;margin-top:14px}
+.ch .desc{font-size:13.5px;color:var(--fg-2);margin-top:6px;max-width:28ch}
+.sems{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.sem h3{font-size:14px;font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.sem h3 small{font-weight:500;color:var(--fg-3)}
+.sem ul{list-style:none;margin:0;padding:0}
+.sem li{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line)}
+.sem li .lv{font-size:11.5px;font-weight:700;color:var(--fg-3);letter-spacing:.04em}
+.sem li .lv.l3{color:var(--accent)}
+.sem li button{text-align:left;font-weight:500}
+.sem li button:hover{text-decoration:underline;text-underline-offset:3px}
+.marks{display:inline-flex;gap:4px;margin-left:8px;vertical-align:1px}
+.mk{font-size:10.5px;font-weight:700;padding:1px 6px;border:1px solid var(--line-strong);color:var(--fg-2);border-radius:2px}
+.mk.req{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.key{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--fg-2);margin-bottom:28px;align-items:center}
+
+/* cert compare */
+.sec h2{font-family:var(--display);font-size:28px;font-weight:700}
+.sec .lead{color:var(--fg-2);max-width:60ch;margin-top:8px;margin-bottom:28px}
+.compare{width:100%;border-collapse:collapse;font-size:14px}
+.compare th{text-align:left;font-size:12.5px;color:var(--fg-2);font-weight:700;padding:0 14px 10px 0;border-bottom:1px solid var(--ink-line);vertical-align:bottom}
+.compare td{padding:16px 14px 16px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.compare td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.compare .kind{display:block;font-family:var(--font);font-size:12px;color:var(--fg-2);font-weight:500;margin-top:4px}
+.compare .sum{font-weight:700;color:var(--accent)}
+.compare .rule{font-size:13px;color:var(--fg-2);margin-top:4px;max-width:44ch}
+.compare .core{display:flex;flex-wrap:wrap;gap:4px}
+.compare .core span{font-size:12.5px;padding:3px 8px;background:var(--surface-2)}
+.compare .core span.req{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.compare details{font-size:13px;margin-top:8px}
+.compare summary{cursor:pointer;color:var(--fg-2);font-weight:500}
+.compare details div{margin-top:8px;display:grid;gap:6px}
+.compare details b{font-weight:700}
+.compare details ul{margin:0;padding-left:16px;color:var(--fg-2)}
+.tbl-scroll{overflow-x:auto}
+
+/* competency */
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink-line)}
+.comp{padding:20px 20px 24px 0;border-right:1px solid var(--line)}
+.comp:last-child{border-right:0}
+.comp + .comp{padding-left:20px}
+.comp h3{font-family:var(--display);font-size:20px;font-weight:700}
+.comp .n{font-size:12.5px;color:var(--fg-3);margin-top:2px}
+.comp ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:7px}
+.comp li button{text-align:left;font-size:14px;line-height:1.35}
+.comp li button:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* popover */
+.pop{position:fixed;z-index:50;width:300px;background:var(--surface);border:1px solid var(--ink-line);padding:18px;display:grid;gap:10px;box-shadow:0 14px 36px rgba(0,0,0,.14)}
+.pop h4{margin:0;font-family:var(--display);font-size:18px;font-weight:700}
+.pop .meta{font-size:13px;color:var(--fg-2)}
+.pop .row{display:grid;gap:5px}
+.pop .row b{font-size:12px;color:var(--fg-3);font-weight:700}
+.pop .badges{display:flex;flex-wrap:wrap;gap:5px}
+.pop .badge{font-size:12px;padding:3px 8px;background:var(--surface-2)}
+.pop .badge.acc{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.pop .none{font-size:13px;color:var(--fg-3)}
+.pop .x{position:absolute;top:8px;right:10px;font-size:18px;color:var(--fg-3);line-height:1}
+
+@media (max-width:900px){
+  .intro{grid-template-columns:1fr}
+  .ch{grid-template-columns:1fr}
+  .ch .num{font-size:56px}
+  .comp-grid{grid-template-columns:1fr 1fr}
+  .comp:nth-child(2){border-right:0}
+  .comp:nth-child(3){padding-left:0;border-top:1px solid var(--line)}
+  .comp:nth-child(4){border-top:1px solid var(--line)}
+  .gnb{display:none}
+}
+@media (max-width:600px){
+  .wrap{padding-inline:16px}
+  .sems{grid-template-columns:1fr}
+  .titleband h1{font-size:30px}
+  .intro h2{font-size:26px}
+  .facts b{font-size:26px}
+  .comp-grid{grid-template-columns:1fr}
+  .comp{padding-left:0 !important;border-right:0;border-top:1px solid var(--line)}
+}
+</style>
+
+<header class="site">
+  <div class="topbar"><div class="wrap"><span class="brand">경희사이버대학교</span>
+    <nav class="gnb" aria-label="주메뉴"><span>경희소개</span><span>학과소개</span><span>입학안내</span><span>학사안내</span><span>학습지원</span><span>대학생활</span></nav></div></div>
+  <div class="titleband"><div class="wrap">
+    <p class="crumb">학과소개 › 사회복지학부 › 사회복지전공</p>
+    <h1>사회복지전공</h1>
+    <p class="contact">전공문의 <b>welfare@khcu.ac.kr</b> &nbsp; <b>02-3299-8625</b></p>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+  </div></div>
+</header>
+
+<main>
+  <div class="wrap" id="panel-roadmap" role="tabpanel">
+    <section class="intro">
+      <div><h2>사회복지사가 되는 4년의 길을 안내서처럼 읽어 보세요.</h2>
+        <p>학년마다 무엇을 배우고 왜 배우는지, 그 과목이 어떤 자격증과 역량으로 이어지는지 순서대로 정리했습니다. 과목 이름을 누르면 상세를 볼 수 있습니다.</p></div>
+      <div class="facts" id="facts"></div>
+    </section>
+
+    <section class="sec">
+      <h2>교육과정 로드맵</h2>
+      <p class="lead">학년별로 두 학기씩 묶어 보여줍니다. 과목 옆 표시는 그 과목이 어느 자격증 요건에 들어가는지를 뜻합니다.</p>
+      <div class="key" id="key"></div>
+      <div class="chapters" id="chapters"></div>
+    </section>
+
+    <section class="sec">
+      <h2>자격증별 로드맵</h2>
+      <p class="lead">5가지 자격증과 수료증을 한 표에서 비교합니다. 국가자격증, 자격인정, 총장명의 수료증은 취득 방식이 서로 다릅니다.</p>
+      <div class="tbl-scroll"><table class="compare" id="compare"></table></div>
+    </section>
+
+    <section class="sec">
+      <h2>전공역량 매핑</h2>
+      <p class="lead">사회복지전공이 기르는 4가지 역량입니다. 역량별로 어떤 과목이 그 역량을 키우는지 모았습니다.</p>
+      <div class="comp-grid" id="compGrid"></div>
+    </section>
+  </div>
+  <div class="wrap" id="panel-dummy" role="tabpanel" hidden><div class="dummy"><h2 id="dummyTitle"></h2><p>이 탭은 시안 범위 밖이라 비워 두었습니다. 기존 페이지의 내용을 그대로 사용합니다.</p></div></div>
+</main>
+
+<div class="pop" id="pop" hidden role="dialog" aria-modal="false"></div>
+
+<script>
+<!--DATA-->
+</script>
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  /* tabs */
+  const tabs=$('#tabs');
+  TABS.forEach((t,i)=>{ const b=document.createElement('button'); b.className='tab'; b.role='tab'; b.textContent=t; b.setAttribute('aria-selected',i===1); b.onclick=()=>{ tabs.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===b)); const real=i===1; $('#panel-roadmap').hidden=!real; $('#panel-dummy').hidden=real; $('#dummyTitle').textContent=t; }; tabs.appendChild(b); });
+
+  /* facts */
+  const nCourses=Object.keys(COURSES).filter(n=>COURSES[n].level).length;
+  $('#facts').innerHTML=`<div><b>${nCourses}</b><small>전공 과목 (8학기)</small></div><div><b>${CERTS.length}</b><small>자격증과 수료증</small></div><div><b>${COMPS.length}</b><small>전공역량</small></div>`;
+
+  /* key */
+  const markOf=(n)=>{ const c=COURSES[n]; if(!c) return ''; return c.certs.map(id=>{ const ct=certById(id); const req=id==='sw2'&&SW2_REQUIRED.includes(n); return `<span class="mk ${req?'req':''}">${esc(ct.short)}${req?' 필수':''}</span>`; }).join(''); };
+  $('#key').innerHTML=`<span>표시:</span><span class="mk req">2급 필수</span><span class="mk">2급</span><span class="mk">건강가정사</span><span class="mk">다문화</span><span class="mk">스마트</span><span>2급 필수는 보건복지부령이 정한 10과목입니다.</span>`;
+
+  /* chapters */
+  const lvIdx=lv=>LEVELS.indexOf(lv)+1;
+  $('#chapters').innerHTML=YEARS.map(y=>`<article class="ch"><div><div class="num">${y.n}<small>${y.label}</small></div><h3 class="theme">${esc(y.theme)}</h3><p class="desc">${esc(y.desc)}</p></div><div class="sems">${y.sems.map(s=>{ const items=[]; LEVELS.forEach(lv=>(ROADMAP[lv][s]||[]).forEach(n=>items.push({n,lv}))); return `<div class="sem"><h3>${s}학기<small>${items.length}과목</small></h3><ul>${items.map(({n,lv})=>`<li><span class="lv l${lvIdx(lv)}">${lv}</span><span><button data-course="${esc(n)}">${esc(n)}</button><span class="marks">${markOf(n)}</span></span></li>`).join('')}</ul></div>`; }).join('')}</div></article>`).join('');
+
+  /* compare table */
+  $('#compare').innerHTML=`<thead><tr><th>자격</th><th>이수 요건</th><th>핵심 과목</th></tr></thead><tbody>${CERTS.map(c=>{
+    let core='';
+    if(c.id==='sw2') core=`<div class="core">${SW2_REQUIRED.map(n=>`<span class="req">${esc(n)}</span>`).join('')}</div><details><summary>선택 과목 ${c.courses.length-10}개 보기 (7과목 선택)</summary><div><div class="core">${c.courses.filter(n=>!SW2_REQUIRED.includes(n)).map(n=>`<span>${esc(n)}</span>`).join('')}</div></div></details>`;
+    else if(c.groups) core=`<div style="display:grid;gap:8px">${c.groups.map(g=>`<div><b style="font-size:12.5px">${esc(g.label)}</b><div class="core" style="margin-top:4px">${g.items.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div>`).join('')}</div>`;
+    else if(c.bySem) core=`<div class="core">${c.courses.slice(0,8).map(n=>`<span>${esc(n)}</span>`).join('')}</div><details><summary>관련 과목 ${c.courses.length}개 전체 보기</summary><div><div class="core">${c.courses.map(n=>`<span>${esc(n)}</span>`).join('')}</div></div></details>`;
+    else core=`<div style="display:grid;gap:6px;font-size:13.5px">${c.steps.map((s,i)=>`<div><b>${i+1}.</b> ${esc(s)}</div>`).join('')}</div>`;
+    const notes=c.notes.length?`<details><summary>유의사항</summary><div><ul>${c.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div></details>`:'';
+    return `<tr><td>${esc(c.name)}<span class="kind">${esc(c.kind)}</span></td><td><div class="sum">${esc(c.summary)}</div><p class="rule">${esc(c.rule)}</p>${notes}</td><td>${core}</td></tr>`; }).join('')}</tbody>`;
+
+  /* competency */
+  $('#compGrid').innerHTML=COMPS.map((cp,i)=>{ const list=Object.keys(MAPPING).filter(n=>MAPPING[n][i]); return `<div class="comp"><h3>${esc(cp)}</h3><p class="n">${list.length}과목이 이 역량을 기릅니다</p><ul>${list.map(n=>`<li><button data-course="${esc(n)}">${esc(n)}</button></li>`).join('')}</ul></div>`; }).join('');
+
+  /* popover */
+  const pop=$('#pop');
+  function openPop(btn){
+    const n=btn.dataset.course, c=COURSES[n]||{name:n,level:null,sems:[],certs:[],comps:MAPPING[n]||[0,0,0,0]};
+    const certs=c.certs.map(id=>{const ct=certById(id); const req=id==='sw2'&&SW2_REQUIRED.includes(n); return `<span class="badge ${req?'acc':''}">${esc(ct.name)}${req?' 필수':''}</span>`;}).join('');
+    const comps=COMPS.filter((_,i)=>c.comps[i]).map(x=>`<span class="badge">${esc(x)}</span>`).join('');
+    pop.innerHTML=`<button class="x" aria-label="닫기">×</button><h4>${esc(n)}</h4><p class="meta">${c.level?c.level+' 과목, ':''}${c.sems.length?c.sems.join(', ')+'학기 개설':'개설 학기 정보 없음'}</p><div class="row"><b>관련 자격증</b><div class="badges">${certs||'<span class="none">해당 없음</span>'}</div></div><div class="row"><b>전공역량</b><div class="badges">${comps||'<span class="none">매핑 정보 없음</span>'}</div></div>`;
+    pop.hidden=false; const r=btn.getBoundingClientRect(); let x=r.left, y=r.bottom+8; const w=300, h=pop.offsetHeight; if(x+w>innerWidth-12) x=innerWidth-12-w; if(y+h>innerHeight-12) y=r.top-h-8; if(y<8) y=8; pop.style.left=Math.max(8,x)+'px'; pop.style.top=y+'px';
+    pop.querySelector('.x').onclick=()=>pop.hidden=true;
+  }
+  document.addEventListener('click',e=>{ const b=e.target.closest('[data-course]'); if(b){openPop(b);return;} if(!pop.contains(e.target)) pop.hidden=true; });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') pop.hidden=true; });
+  addEventListener('scroll',()=>{ pop.hidden=true; },{passive:true});
+})();
+</script>

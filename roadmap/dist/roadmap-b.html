@@ -1,0 +1,386 @@
+<title>사회복지전공 로드맵 B안</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+[hidden]{display:none!important}
+/* Layout concept: 왼쪽은 "내 목표" 패널(자격증 선택 + 진행률), 오른쪽은 8학기 보드. 학생이 들은 과목을 체크하면 목표 자격증의 남은 과목이 바로 줄어든다. */
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --surface-2:#EBEDF3; --line:#DCDFE8; --line-strong:#C3C8D6;
+  --fg:#15192B; --fg-2:#555C73; --fg-3:#8A90A3;
+  --navy:#1E2A5A; --navy-ink:#FFFFFF; --navy-soft:#E6E9F5;
+  --accent:#A6192E; --accent-ink:#FFFFFF; --accent-soft:#F7E4E7; --accent-line:#D9A1AA;
+  --ok:#1E7F4F; --ok-soft:#DDF3E6;
+  --lv1:#9FB0E8; --lv2:#5468B8; --lv3:#1E2A5A;
+  --focus:#2E5BFF; --shadow:0 12px 32px rgba(30,42,90,.14);
+  --font:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --r:10px; /* 카드 10px, 버튼과 칩은 pill */
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F1220; --surface:#181C2E; --surface-2:#222740; --line:#2E3450; --line-strong:#424A6B;
+  --fg:#E9ECF5; --fg-2:#B4BAD0; --fg-3:#7D8499;
+  --navy:#8E9CD8; --navy-ink:#0F1220; --navy-soft:#252C4A;
+  --accent:#E25C70; --accent-ink:#1A0B0E; --accent-soft:#3A1F25; --accent-line:#7A3742;
+  --ok:#5CCB8A; --ok-soft:#1D3A2B;
+  --lv1:#4A5790; --lv2:#7585CF; --lv3:#AEBBF0;
+  --shadow:0 12px 32px rgba(0,0,0,.5); color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0F1220; --surface:#181C2E; --surface-2:#222740; --line:#2E3450; --line-strong:#424A6B;
+  --fg:#E9ECF5; --fg-2:#B4BAD0; --fg-3:#7D8499;
+  --navy:#8E9CD8; --navy-ink:#0F1220; --navy-soft:#252C4A;
+  --accent:#E25C70; --accent-ink:#1A0B0E; --accent-soft:#3A1F25; --accent-line:#7A3742;
+  --ok:#5CCB8A; --ok-soft:#1D3A2B;
+  --lv1:#4A5790; --lv2:#7585CF; --lv3:#AEBBF0;
+  --shadow:0 12px 32px rgba(0,0,0,.5); color-scheme:dark; }
+
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;text-wrap:balance;letter-spacing:-.01em;word-break:keep-all} p{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:24px}
+
+/* header */
+.topbar{background:var(--navy);color:var(--navy-ink)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:52px;gap:24px}
+.brand{font-weight:700}
+.gnb{display:flex;gap:26px;font-size:13.5px;font-weight:500;opacity:.9}
+.titleband{background:var(--surface);border-bottom:1px solid var(--line)}
+.titleband .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:22px 0;flex-wrap:wrap}
+.crumb{font-size:12.5px;color:var(--fg-3);margin-bottom:4px}
+.titleband h1{font-size:26px;font-weight:700}
+.contact{font-size:13px;color:var(--fg-2)} .contact b{color:var(--fg);font-weight:500}
+.tabs{display:flex;gap:6px;flex-basis:100%;margin-top:14px;overflow-x:auto;overflow-y:hidden;padding-bottom:12px}
+.tab{padding:8px 16px;border-radius:999px;font-weight:500;color:var(--fg-2);white-space:nowrap;background:var(--surface-2)}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);font-weight:700}
+
+/* app layout */
+.app{display:grid;grid-template-columns:320px minmax(0,1fr);gap:20px;padding-block:24px 72px;align-items:start}
+.side{position:sticky;top:16px;display:grid;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.side h2{font-size:15px;font-weight:700;padding:14px 16px 0}
+.side .sub{font-size:12.5px;color:var(--fg-2);padding:2px 16px 12px}
+.goal-list{display:grid;gap:4px;padding:0 10px 10px}
+.goal{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;text-align:left;padding:10px 10px;border-radius:8px}
+.goal:hover{background:var(--surface-2)}
+.goal[aria-pressed="true"]{background:var(--accent-soft)}
+.goal .nm{font-weight:700;font-size:14px}
+.goal .kd{font-size:11.5px;color:var(--fg-2)}
+.goal .pct{font-variant-numeric:tabular-nums;font-size:13px;font-weight:700;color:var(--accent)}
+.goal[aria-pressed="true"] .pct{color:var(--accent)}
+.prog{display:grid;gap:12px;padding:14px 16px 16px;border-top:1px solid var(--line)}
+.prog h3{font-size:16px;font-weight:700}
+.prog .sum{color:var(--accent);font-weight:700;font-size:13.5px}
+.prog .rule{font-size:12.5px;color:var(--fg-2)}
+.meter{display:grid;gap:5px}
+.meter .lbl{display:flex;justify-content:space-between;font-size:12.5px;color:var(--fg-2)}
+.meter .lbl b{color:var(--fg);font-variant-numeric:tabular-nums}
+.meter .bar{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.meter .bar i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .3s}
+.meter.done .bar i{background:var(--ok)}
+.remain{display:flex;flex-wrap:wrap;gap:5px}
+.remain span{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--surface-2)}
+.remain span.req{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.remain .more{color:var(--fg-3)}
+.steps{display:grid;gap:8px}
+.steps div{display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:13px;align-items:start}
+.steps b{width:24px;height:24px;border-radius:999px;background:var(--navy);color:var(--navy-ink);font-size:12px;display:grid;place-items:center}
+.groups{display:grid;gap:8px}
+.groups b{display:block;font-size:12.5px;margin-bottom:3px}
+.groups div{display:flex;flex-wrap:wrap;gap:4px}
+.groups span{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--surface-2)}
+.notes{margin:0;padding-left:16px;font-size:12px;color:var(--fg-2);display:grid;gap:3px}
+.reset{font-size:12.5px;color:var(--fg-3);text-decoration:underline;justify-self:start}
+
+/* board */
+.main{display:grid;gap:20px;min-width:0}
+.board-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.board-head h2{font-size:20px;font-weight:700}
+.board-head p{font-size:13px;color:var(--fg-2);max-width:60ch}
+.legend{display:flex;gap:12px;font-size:12.5px;color:var(--fg-2)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;border-radius:999px;display:inline-block}
+.board{display:grid;gap:22px}
+.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.col{display:grid;gap:6px;align-content:start}
+.col h3{font-size:13px;font-weight:700;color:var(--navy);padding:8px 10px;background:var(--navy-soft);border-radius:8px;display:flex;justify-content:space-between}
+.col h3 small{color:var(--fg-3);font-weight:500}
+.yrs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:8px}
+.yrs div{font-size:12.5px;color:var(--fg-2);padding:0 4px 6px;border-bottom:2px solid var(--line-strong)}
+.yrs b{color:var(--fg);font-weight:700}
+.course{display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start;padding:8px 9px;background:var(--surface);border:1px solid var(--line);border-radius:8px;border-left-width:4px;cursor:pointer;transition:opacity .2s,border-color .2s}
+.course input{margin:2px 0 0;width:15px;height:15px;accent-color:var(--ok)}
+.course .nm{font-size:13px;line-height:1.3;font-weight:500;word-break:keep-all}
+.course.l1{border-left-color:var(--lv1)} .course.l2{border-left-color:var(--lv2)} .course.l3{border-left-color:var(--lv3)}
+.course .dots{display:flex;gap:3px;margin-top:5px}
+.course .dots i{width:6px;height:6px;border-radius:999px;background:var(--line-strong)}
+.course .dots i.on{background:var(--navy)}
+.course .tag{font-size:10px;font-weight:700;color:var(--accent);margin-top:3px;display:none}
+.board.filtered .course{opacity:.3}
+.board.filtered .course.hit{opacity:1;border-color:var(--accent-line)}
+.board.filtered .course.req .tag{display:block}
+.course.done{background:var(--ok-soft);border-color:transparent}
+.course.done .nm{text-decoration:line-through;color:var(--fg-2)}
+.board.filtered .course.done{opacity:.55}
+
+/* competency */
+.comp-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.comp-wrap .card{padding:18px 20px;display:grid;gap:14px;min-width:0}
+.comp-wrap h2{font-size:17px;font-weight:700}
+.comp-wrap p{font-size:13px;color:var(--fg-2)}
+.cmeter{display:grid;grid-template-columns:110px 1fr 56px;gap:10px;align-items:center;font-size:13px}
+.cmeter .bar{height:10px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.cmeter .bar i{display:block;height:100%;background:var(--navy);border-radius:999px;transition:width .3s}
+.cmeter b{font-variant-numeric:tabular-nums;text-align:right;color:var(--fg-2);font-weight:500}
+.matrix{width:100%;border-collapse:collapse;font-size:12.5px}
+.matrix th{font-weight:700;color:var(--fg-2);text-align:center;padding:6px 4px;border-bottom:1px solid var(--line)}
+.matrix th:first-child{text-align:left}
+.matrix td{padding:5px 4px;border-bottom:1px solid var(--line);text-align:center}
+.matrix td:first-child{text-align:left}
+.matrix td i{display:inline-block;width:9px;height:9px;border-radius:999px;background:var(--navy)}
+.matrix tr.done td:first-child{color:var(--ok);font-weight:700}
+.scrollbox{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:0 10px}
+.dummy{padding:72px 24px;text-align:center;border:1px dashed var(--line-strong);border-radius:var(--r);color:var(--fg-2);margin-block:24px 72px}
+.dummy h2{font-size:20px;margin-bottom:6px;color:var(--fg)}
+
+@media (max-width:980px){ .app{grid-template-columns:1fr} .side{position:static} .comp-wrap{grid-template-columns:1fr} .gnb{display:none} }
+@media (max-width:700px){ .cols{grid-template-columns:1fr 1fr} .yrs{grid-template-columns:1fr} .yrs div:last-child{display:none} }
+@media (max-width:600px){ .wrap{padding-inline:16px} .titleband h1{font-size:22px} }
+@media (prefers-reduced-motion:reduce){ .meter .bar i,.cmeter .bar i,.course{transition:none} }
+</style>
+
+<header class="site">
+  <div class="topbar"><div class="wrap"><span class="brand">경희사이버대학교</span>
+    <nav class="gnb" aria-label="주메뉴"><span>경희소개</span><span>학과소개</span><span>입학안내</span><span>학사안내</span><span>학습지원</span><span>대학생활</span></nav></div></div>
+  <div class="titleband"><div class="wrap">
+    <div><p class="crumb">학과소개 › 사회복지학부 › 사회복지전공</p><h1>사회복지전공</h1></div>
+    <p class="contact">전공문의 <b>welfare@khcu.ac.kr</b> &nbsp; <b>02-3299-8625</b></p>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+  </div></div>
+</header>
+
+<main>
+  <div class="wrap app" id="panel-roadmap" role="tabpanel">
+    <aside class="side">
+      <div class="card">
+        <h2>내 목표 자격증</h2>
+        <p class="sub">하나를 고르면 보드에서 필요한 과목이 강조되고, 체크한 과목 기준으로 남은 과목이 계산됩니다.</p>
+        <div class="goal-list" id="goalList"></div>
+        <div class="prog" id="prog"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <section>
+        <div class="board-head">
+          <div><h2>교육과정 로드맵</h2><p>8개 학기 보드입니다. 수강을 마친 과목은 체크해 두세요. 이 브라우저에만 저장됩니다.</p></div>
+          <div class="legend"><span><i style="background:var(--lv1)"></i>기초</span><span><i style="background:var(--lv2)"></i>심화</span><span><i style="background:var(--lv3)"></i>응용</span><span><i style="background:var(--navy);border-radius:2px"></i>전공역량 4개 점</span></div>
+        </div>
+        <div class="board" id="board"></div>
+      </section>
+
+      <section class="comp-wrap">
+        <div class="card">
+          <h2>내 전공역량 분포</h2>
+          <p>체크한 과목이 어느 역량에 몰려 있는지 봅니다. 숫자는 해당 역량으로 매핑된 과목 수입니다.</p>
+          <div id="compMeters" style="display:grid;gap:10px"></div>
+        </div>
+        <div class="card">
+          <h2>전공역량 매핑표</h2>
+          <p>4가지 역량과 과목의 대응표입니다. 점이 있으면 그 과목이 그 역량을 기릅니다.</p>
+          <div class="scrollbox"><table class="matrix" id="matrix"></table></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="wrap" id="panel-dummy" role="tabpanel" hidden><div class="dummy"><h2 id="dummyTitle"></h2><p>이 탭은 시안 범위 밖이라 비워 두었습니다. 기존 페이지의 내용을 그대로 사용합니다.</p></div></div>
+</main>
+
+<script>
+/* ===== 사회복지전공 교육과정 데이터 (출처: khcu.ac.kr 교육과정로드맵 탭 캡처) ===== */
+const SEMS = ["1-1","1-2","2-1","2-2","3-1","3-2","4-1","4-2"];
+const YEARS = [
+  {n:1, label:"1학년", sems:["1-1","1-2"], theme:"기초 다지기", desc:"사회복지의 기본 개념과 인간, 사회를 이해하는 과목부터 시작합니다."},
+  {n:2, label:"2학년", sems:["2-1","2-2"], theme:"실천 역량 쌓기", desc:"실천론, 실천기술론, 조사론 등 사회복지사의 핵심 실천 과목을 집중 이수합니다."},
+  {n:3, label:"3학년", sems:["3-1","3-2"], theme:"정책과 행정, 현장 준비", desc:"행정, 정책, 복지국가 등 거시 과목과 함께 현장실습을 시작합니다."},
+  {n:4, label:"4학년", sems:["4-1","4-2"], theme:"현장과 전문화", desc:"현장실습을 마무리하고 윤리, 사례관리, 전문 분야 과목으로 진로를 구체화합니다."},
+];
+const LEVELS = ["기초","심화","응용"];
+const ROADMAP = {
+  "기초": {
+    "1-1":["사회복지학개론","인간행동과사회환경","자원봉사론","가족과젠더","사회문제론"],
+    "1-2":["사회복지학개론","인간행동과사회환경","사회복지역사"],
+    "2-2":["청소년복지론"],
+  },
+  "심화": {
+    "2-1":["사회복지실천론","사회복지실천기술론","사회복지조사론","지역사회복지론","가족복지론","건강가정론"],
+    "2-2":["사회복지실천론","사회복지실천기술론","사회복지법제와실천","지역사회복지론","가족복지론"],
+    "3-1":["사회복지행정론","가족상담","국제사회복지론"],
+    "3-2":["사회복지정책론","사회복지행정론","복지국가론"],
+  },
+  "응용": {
+    "2-1":["아동복지론"],
+    "3-1":["교정복지론"],
+    "3-2":["사회복지현장실습","여성복지론","프로그램개발과평가"],
+    "4-1":["사회복지현장실습","사회복지윤리와철학","사례관리론"],
+    "4-2":["다문화사회복지","사회보장론","학교사회복지론","AI와사회복지실천"], /* AI와사회복지실천: 원본 교육과정 로드맵 표에는 없고 스마트복지사 표와 전공역량 매핑에만 있어 추가함 */
+  },
+};
+/* 보건복지부령 기준 사회복지사 2급 필수 10과목 */
+const SW2_REQUIRED = ["사회복지학개론","인간행동과사회환경","사회복지실천론","사회복지실천기술론","사회복지조사론","사회복지정책론","사회복지행정론","사회복지법제와실천","지역사회복지론","사회복지현장실습"];
+const CERTS = [
+  {
+    id:"sw2", name:"사회복지사 2급", kind:"국가자격증", short:"2급",
+    summary:"필수 10과목 + 선택 7과목 이수",
+    rule:"2020년부터 보건복지부령이 정하는 '사회복지학 전공교과목과 사회복지관련 교과목' 기준을 따릅니다.",
+    quota:{required:10, elective:7},
+    required:SW2_REQUIRED,
+    bySem:{
+      "1-1":["사회복지학개론","인간행동과사회환경","자원봉사론","사회문제론"],
+      "1-2":["사회복지학개론","인간행동과사회환경","사회복지역사"],
+      "2-1":["사회복지실천론","사회복지조사론","가족복지론","아동복지론","사회복지실천기술론","지역사회복지론"],
+      "2-2":["사회복지실천론","사회복지실천기술론","사회복지법제와실천","지역사회복지론","청소년복지론","가족복지론"],
+      "3-1":["사회복지행정론","국제사회복지론","교정복지론"],
+      "3-2":["사회복지정책론","사회복지현장실습","프로그램개발과평가","사회복지행정론","복지국가론","여성복지론"],
+      "4-1":["사회복지윤리와철학","사회복지현장실습","사례관리론"],
+      "4-2":["학교사회복지론","사회보장론"],
+    },
+    notes:["필수 10과목은 보건복지부령이 정한 과목이며, 나머지는 선택 과목 중 7과목을 이수합니다."],
+  },
+  {
+    id:"hf", name:"건강가정사", kind:"자격인정", short:"건강가정사",
+    summary:"핵심 5과목 + 기초 4과목 + 실제 3과목 이수",
+    rule:"대학 또는 이와 동등 이상의 학교에서 사회복지학, 가정학, 여성학 등 관련 교과목을 이수하고 졸업하면 주어집니다. (건강가정기본법 제35조 제2, 3항)",
+    bySem:{
+      "1-1":["가족과젠더","사회복지학개론","인간행동과사회환경","자원봉사론"],
+      "1-2":["사회복지학개론","인간행동과사회환경"],
+      "2-1":["가족복지론","아동복지론","사회복지실천론","사회복지조사론","사회복지실천기술론","건강가정론","지역사회복지론"],
+      "2-2":["사회복지실천론","사회복지실천기술론","지역사회복지론","청소년복지론"],
+      "3-1":["가족상담","사회복지행정론"],
+      "3-2":["여성복지론","프로그램개발과평가","사회복지행정론"],
+      "4-1":["사례관리론"],
+    },
+    notes:[
+      "별도의 자격 신청 절차가 없으며, 자격증 및 인증서는 발급되지 않습니다.",
+      "취업 등으로 확인이 필요할 때는 성적증명서(과목 이수)를 제출하면 자격을 취득한 것으로 간주됩니다.",
+    ],
+  },
+  {
+    id:"school", name:"학교사회복지사", kind:"국가자격증", short:"학교사회복지사",
+    summary:"사회복지사 1급 자격증 소지 + 수련기관에서 1년 이상 수련(1000시간)",
+    rule:"수련기관은 학교사회복지 업무를 수행하는 담당 부서를 갖추고 수련지도자가 상근하는 초·중등교육법 제2조에 따른 학교입니다.",
+    bySem:null,
+    steps:["사회복지사 2급 취득 (학부 과정)","사회복지사 1급 국가시험 합격","수련기관에서 1년 이상, 1000시간 수련"],
+    notes:[],
+  },
+  {
+    id:"multi", name:"다문화사회복지전문가", kind:"총장명의 수료증", short:"다문화",
+    summary:"총 5과목(15학점) + 특강(총 4시간) 이수",
+    required:["다문화사회복지","가족복지론"],
+    electiveNote:"선택 2과목은 사회복지윤리와철학, 가족상담, 가족과젠더 중에서 고릅니다. 교양선택 1과목과 특강 4시간은 별도입니다.",
+    rule:"총장명의 수료증 취득을 위한 이수 과목은 본교에서 이수한 과목만 인정됩니다.",
+    bySem:{
+      "1-1":["가족과젠더"], "2-1":["가족복지론"], "2-2":["가족복지론"], "3-1":["가족상담"],
+      "4-1":["사회복지윤리와철학"], "4-2":["다문화사회복지"],
+    },
+    groups:[
+      {label:"필수 2과목", items:["다문화사회복지","가족복지론"]},
+      {label:"선택 2과목 (택 2)", items:["사회복지윤리와철학","가족상담","가족과젠더"]},
+      {label:"교양선택 1과목 (택 1)", items:["현대철학","문명의전환을꿈꾸다","세계시민","초연결사회를살다"]},
+      {label:"다문화사회복지교육 필수 4시간 (2학기 중 진행)", items:["다문화사회복지특강 2시간","현장실무자와의 슈퍼비전워크숍 2시간"]},
+    ],
+    notes:["이수 교과목은 교육과정 운영 및 교과목 개설 상황에 따라 변경될 수 있습니다."],
+  },
+  {
+    id:"smart", name:"스마트복지사", kind:"총장명의 수료증", short:"스마트",
+    summary:"총 4과목(12학점) + 특강(총 3시간) 이수",
+    required:["사회복지학개론","사회복지조사론","AI와사회복지실천"],
+    electiveNote:"선택 1과목은 교양학부 인공지능과우리의삶 또는 컴퓨터정보통신공학전공 융합기술과콘텐츠 중 하나입니다. 특강 3시간은 별도입니다.",
+    rule:"총장명의 수료증 취득을 위한 이수 과목은 본교에서 이수한 과목만 인정됩니다.",
+    bySem:{ "1-1":["사회복지학개론"], "1-2":["사회복지학개론"], "2-1":["사회복지조사론"], "4-2":["AI와사회복지실천"] },
+    groups:[
+      {label:"필수 3과목 (사회복지전공)", items:["사회복지학개론","사회복지조사론","AI와사회복지실천"]},
+      {label:"선택 1과목 (택 1)", items:["인공지능과우리의삶 (교양학부)","융합기술과콘텐츠 (컴퓨터정보통신공학전공)"]},
+      {label:"실무적용 특강 필수 3시간 (2학기 중 진행)", items:["실무적용 특강 3시간"]},
+    ],
+    notes:["이수 교과목은 교육과정 운영 및 교과목 개설 상황에 따라 변경될 수 있습니다."],
+  },
+];
+const COMPS = ["실무능력","문제해결능력","의사소통능력","윤리실천능력"];
+const COMP_SHORT = ["실무","문제해결","의사소통","윤리실천"];
+const MAPPING = {
+  "AI와사회복지실천":[1,1,1,0], "교정복지론":[1,1,1,1], "국제사회복지론":[0,0,1,1], "사례관리론":[1,1,1,0],
+  "사회문제론":[0,1,0,0], "사회복지실천론":[0,1,1,1], "사회복지윤리와철학":[0,0,0,1], "사회복지조사론":[1,1,0,0],
+  "사회복지학개론":[0,1,0,0], "사회복지현장실습":[1,0,0,1], "아동복지론":[0,0,1,1], "인간행동과사회환경":[0,0,1,0],
+  "자원봉사론":[1,0,0,1], "다문화사회복지":[0,0,1,1], "복지국가론":[1,1,0,0], "사회보장론":[1,1,0,0],
+  "사회복지법제와실천":[1,1,0,0], "사회복지역사":[1,1,0,0], "사회복지정책론":[1,1,0,0], "여성복지론":[0,0,1,1],
+  "프로그램개발과평가":[0,1,1,0], "학교사회복지론":[0,0,1,1],
+};
+const TABS = ["전공소개","교육과정로드맵","교과목안내","교수소개","강의체험","학부스토리"];
+
+/* ---- 파생 인덱스 ---- */
+const COURSES = {}; // name -> {level, sems:[], certs:[], comps:[]}
+LEVELS.forEach(lv => Object.entries(ROADMAP[lv]).forEach(([s, list]) => list.forEach(n => {
+  if (!COURSES[n]) COURSES[n] = {name:n, level:lv, sems:[], certs:[]};
+  COURSES[n].sems.push(s);
+})));
+CERTS.forEach(c => { if (!c.bySem) return; c.courses = [...new Set(Object.values(c.bySem).flat())];
+  c.courses.forEach(n => { if (!COURSES[n]) COURSES[n] = {name:n, level:null, sems:[], certs:[]}; if (!COURSES[n].certs.includes(c.id)) COURSES[n].certs.push(c.id); }); });
+Object.values(COURSES).forEach(c => { c.comps = MAPPING[c.name] || [0,0,0,0]; });
+const certById = id => CERTS.find(c => c.id === id);
+const esc = s => String(s).replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+
+</script>
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  const KEY='khcu-sw-done-b';
+  let done=new Set(); try{ done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]')); }catch(e){}
+  const save=()=>{ try{ localStorage.setItem(KEY, JSON.stringify([...done])); }catch(e){} };
+  let goal='sw2';
+
+  /* tabs */
+  const tabs=$('#tabs');
+  TABS.forEach((t,i)=>{ const b=document.createElement('button'); b.className='tab'; b.role='tab'; b.textContent=t; b.setAttribute('aria-selected',i===1); b.onclick=()=>{ tabs.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===b)); const real=i===1; $('#panel-roadmap').hidden=!real; $('#panel-dummy').hidden=real; $('#dummyTitle').textContent=t; }; tabs.appendChild(b); });
+
+  /* board */
+  const cols=$('#board'); const lvClass=lv=>'l'+(LEVELS.indexOf(lv)+1);
+  const colHtml = s => { const items=[]; LEVELS.forEach(lv=>(ROADMAP[lv][s]||[]).forEach(n=>items.push({n,lv})));
+    return `<div class="col"><h3>${s}학기<small>${items.length}과목</small></h3>${items.map(({n,lv})=>{ const m=MAPPING[n]||[0,0,0,0]; const id='c-'+s+'-'+n;
+      return `<label class="course ${lvClass(lv)}" data-course="${esc(n)}"><input type="checkbox" id="${esc(id)}" ${done.has(n)?'checked':''}><span><span class="nm">${esc(n)}</span><span class="dots" aria-label="전공역량">${m.map(v=>`<i class="${v?'on':''}"></i>`).join('')}</span><span class="tag">필수</span></span></label>`; }).join('')}</div>`; };
+  cols.innerHTML = [[0,1],[2,3]].map(pair=>`<div><div class="yrs">${pair.map(i=>`<div><b>${YEARS[i].label}</b> ${esc(YEARS[i].theme)}</div>`).join('')}</div><div class="cols">${pair.flatMap(i=>YEARS[i].sems).map(colHtml).join('')}</div></div>`).join('');
+  cols.addEventListener('change',e=>{ const inp=e.target; if(inp.type!=='checkbox') return; const n=inp.closest('.course').dataset.course; if(inp.checked) done.add(n); else done.delete(n); save(); render(); });
+
+  /* goals */
+  const gl=$('#goalList');
+  CERTS.forEach(c=>{ const b=document.createElement('button'); b.className='goal'; b.dataset.id=c.id; b.innerHTML=`<span><span class="nm">${esc(c.name)}</span><br><span class="kd">${esc(c.kind)}</span></span><span class="pct"></span>`; b.onclick=()=>{goal=c.id;render();}; gl.appendChild(b); });
+
+  function certProgress(c){
+    if(!c.bySem) return null;
+    if(c.id==='sw2'){ const reqDone=SW2_REQUIRED.filter(n=>done.has(n)).length; const elec=c.courses.filter(n=>!SW2_REQUIRED.includes(n)); const elDone=elec.filter(n=>done.has(n)).length; return {parts:[{l:'필수',d:reqDone,t:10},{l:'선택',d:Math.min(elDone,7),t:7}], remainReq:SW2_REQUIRED.filter(n=>!done.has(n)), remainEl:elec.filter(n=>!done.has(n)), need:Math.max(0,10-reqDone)+Math.max(0,7-elDone)}; }
+    if(c.groups && c.id!=='hf'){ const named=c.courses; const d=named.filter(n=>done.has(n)).length; return {parts:[{l:'전공 과목',d,t:named.length}], remainReq:named.filter(n=>!done.has(n)), remainEl:[], need:named.length-d}; }
+    const d=c.courses.filter(n=>done.has(n)).length; return {parts:[{l:'관련 과목',d,t:c.courses.length}], remainReq:[], remainEl:c.courses.filter(n=>!done.has(n)), need:c.courses.length-d};
+  }
+
+  function render(){
+    /* board highlight */
+    const c=certById(goal); const board=$('#board'); board.classList.toggle('filtered', !!c.bySem);
+    cols.querySelectorAll('.course').forEach(el=>{ const n=el.dataset.course; el.classList.toggle('done',done.has(n)); el.classList.toggle('hit', !!(c.courses&&c.courses.includes(n))); el.classList.toggle('req', c.id==='sw2'&&SW2_REQUIRED.includes(n)); el.querySelector('input').checked=done.has(n); });
+    /* goal list */
+    gl.querySelectorAll('.goal').forEach(b=>{ const cc=certById(b.dataset.id); b.setAttribute('aria-pressed', cc.id===goal); const p=certProgress(cc); b.querySelector('.pct').textContent = p ? p.parts.map(x=>x.d+'/'+x.t).join(' ') : '졸업 후'; });
+    /* progress panel */
+    const p=certProgress(c); let h=`<h3>${esc(c.name)}</h3><p class="sum">${esc(c.summary)}</p><p class="rule">${esc(c.rule)}</p>`;
+    if(p){ h+=p.parts.map(x=>`<div class="meter ${x.d>=x.t?'done':''}"><div class="lbl"><span>${esc(x.l)}</span><b>${x.d} / ${x.t}과목</b></div><div class="bar"><i style="width:${Math.min(100,x.d/x.t*100)}%"></i></div></div>`).join('');
+      const rem=[...p.remainReq.map(n=>({n,req:true})),...p.remainEl.map(n=>({n,req:false}))];
+      h+=`<div><div class="rule" style="margin-bottom:6px">${p.need===0?'필요한 과목을 모두 체크했습니다.':`남은 과목 ${p.need}개${c.id==='sw2'?' (필수는 전부, 선택은 7과목까지)':''}`}</div><div class="remain">${rem.slice(0,12).map(x=>`<span class="${x.req?'req':''}">${esc(x.n)}</span>`).join('')}${rem.length>12?`<span class="more">외 ${rem.length-12}개</span>`:''}</div></div>`; }
+    if(c.steps) h+=`<div class="steps">${c.steps.map((s,i)=>`<div><b>${i+1}</b><span>${esc(s)}</span></div>`).join('')}</div>`;
+    if(c.groups) h+=`<div class="groups">${c.groups.map(g=>`<div><b>${esc(g.label)}</b><div>${g.items.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div>`).join('')}</div>`;
+    if(c.notes.length) h+=`<ul class="notes">${c.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`;
+    h+=`<button class="reset" id="reset">체크 모두 지우기</button>`;
+    $('#prog').innerHTML=h; $('#reset').onclick=()=>{ done.clear(); save(); render(); };
+    /* competency meters */
+    const counts=[0,0,0,0], totals=[0,0,0,0]; Object.entries(MAPPING).forEach(([n,m])=>m.forEach((v,i)=>{ if(v){ totals[i]++; if(done.has(n)) counts[i]++; } }));
+    $('#compMeters').innerHTML=COMPS.map((cp,i)=>`<div class="cmeter"><span>${esc(cp)}</span><div class="bar"><i style="width:${totals[i]?counts[i]/totals[i]*100:0}%"></i></div><b>${counts[i]} / ${totals[i]}</b></div>`).join('');
+    /* matrix */
+    $('#matrix').innerHTML=`<thead><tr><th>교과목명</th>${COMP_SHORT.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${Object.keys(MAPPING).map(n=>`<tr class="${done.has(n)?'done':''}"><td>${esc(n)}</td>${MAPPING[n].map(v=>`<td>${v?'<i></i>':''}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  }
+  render();
+})();
+</script>
